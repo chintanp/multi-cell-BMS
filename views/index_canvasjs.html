@@ -43,7 +43,12 @@
 
 		//var socket = io.connect('http://10.95.145.56:5002');
 
-		var dps_vol = []; // dataPoints
+		var dps_vol1 = []; // dataPoints
+		var dps_vol2 = [];
+		var dps_vol3 = [];
+		var dps_vol4 = [];
+		var dps_vol5 = [];
+		var dps_vol6 = [];
 
 		var chart_vol = new CanvasJS.Chart("chartContainerVol",{
 			title :{
@@ -62,7 +67,32 @@
 			data: [{
 				type: "line",
 				xValueType: "dateTime",
-				dataPoints: dps_vol 
+				dataPoints: dps_vol1 
+			}, 
+			{
+				type: "line",
+				xValueType: "dateTime",
+				dataPoints: dps_vol2 
+			}, 
+			{
+				type: "line",
+				xValueType: "dateTime",
+				dataPoints: dps_vol3 
+			}, 
+			{
+				type: "line",
+				xValueType: "dateTime",
+				dataPoints: dps_vol4 
+			}, 
+			{
+				type: "line",
+				xValueType: "dateTime",
+				dataPoints: dps_vol5 
+			}, 
+			{
+				type: "line",
+				xValueType: "dateTime",
+				dataPoints: dps_vol6 
 			}]
 		});
 
@@ -100,26 +130,51 @@
 			
 			console.log(data);
 			var sensorData = data.livedata;
-			var vol = sensorData.vol;
-			var cur = sensorData.cur;
+			var cell_vols = sensorData.cell_voltages;
+			var cur = sensorData.current;
 
 			xVal = getDateTime();
-			yVal_vol = vol;
+			//yVal_vol = vol;
 			yVal_cur = cur;
 
-			dps_vol.push({
+			dps_vol1.push({
  					x: xVal,
- 					y: yVal_vol
+ 					y: cell_vols[0]
  				});
+ 			dps_vol2.push({
+ 				x: xVal,
+ 				y: cell_vols[0]
+ 			});
+ 			dps_vol3.push({
+ 				x: xVal,
+ 				y: cell_vols[0]
+ 			});
+ 			dps_vol4.push({
+ 				x: xVal,
+ 				y: cell_vols[0]
+ 			});
+ 			dps_vol5.push({
+ 				x: xVal,
+ 				y: cell_vols[0]
+ 			});
+ 			dps_vol6.push({
+ 				x: xVal,
+ 				y: cell_vols[0]
+ 			});
 
 			dps_cur.push({
  					x: xVal,
  					y: yVal_cur
  				});
 
-			if (dps_vol.length > dataLength)
+			if (dps_vol1.length > dataLength)
 			{
-				dps_vol.shift();				
+				dps_vol1.shift();
+				dps_vol2.shift();
+				dps_vol3.shift();
+				dps_vol4.shift();
+				dps_vol5.shift();
+				dps_vol6.shift();
 			}
 			
 			if (dps_cur.length > dataLength)
